@@ -9,21 +9,34 @@ class App extends Component {
        results: {
          headings:[],
          discriptions:[],
-         urls:[]
+         urls:[],
+         query:''
        }
+   }
+   arrayCheck(arr){
+    return arr instanceof Array && arr.length >0;
    }
 
    handleSearch(query) {
     DataApi.fetchData(query).then(data => {
       // As we are getting response in stringified array  hence we cant use JSON.parse
-      // as we cant use JSON.parse we will have to use eval to parse stringified array
+      // as we cant use JSON.parse we will have to use eval to parse stringified array (no option left in my knoledge base)
       // eval is dangerous to use, thats  why we have to check for the type and the data required
+      // eval can exicute all the string as javascript hence giving a chance to exicute harmful code inside
+      // js coming from server
       let arr = eval(data);
-      if(arr instanceof Array && arr[1] && (arr[1].length > 0) && arr[2] && (arr[2].length > 0) && arr[3] && (arr[3].length > 0) ) {
+      let arrCheck = this.arrayCheck(arr);
+      let headingsCheck = arrCheck && this.arrayCheck(arr[1]);
+      let discriptionsCheck = headingsCheck && this.arrayCheck(arr[2]);
+      let resultsCheck = discriptionsCheck &&   this.arrayCheck(arr[3]);
+
+      if(resultsCheck) {
         let  headings = arr[1];
         let  discriptions = arr[2];
         let  urls = arr[3];
-        this.setState({results:{headings,discriptions,urls}})
+        this.setState({results:{headings,discriptions,urls,query}})
+      }else {
+        this.setState({results:{query}})
       }
     })
   }
