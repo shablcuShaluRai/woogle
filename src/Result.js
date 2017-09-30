@@ -19,11 +19,11 @@ export default class Result extends Component {
 
         return (
 <div>
-<ul>
+  <a href={url} className="single-result" target="_blank">{url}</a>
+
 <p>{heading}</p>
 <p>{description}</p>
-<p>{url}</p>
-</ul>
+
 
     </div>
   )
