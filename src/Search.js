@@ -17,14 +17,16 @@ export default class Search extends Component{
    }
 
    handleSubmit(event) {
-    //  alert('you have submitted: ' + this.state.query);
-    let query = this.state.query.trim();
+      let query = this.state.query.trim();
       if (!query) {
           return;
       }
       this.props.onSearch(query)
        event.preventDefault();
-       this.setState({ query: '' })
+
+   }
+   handleReset(){
+     this.setState({query:''})
    }
 
    handleSubmit = this.handleSubmit.bind(this);
@@ -33,14 +35,25 @@ export default class Search extends Component{
 render(){
   return(
     <div >
-    <form onSubmit={this.handleSubmit}>
-  <input className="search-box-text"
+
+  <input
+  className="search-box-text"
   type="text"
   placeholder="Search for something"
   onChange={this.handleChange}
-   value={this.state.query}/>
-    <input type="submit" value="Submit" />
-    </form>
+  value={this.state.query}/>
+  <button onClick={this.handleReset.bind(this)} className='remove'/>
+  <button onClick={this.handleSubmit}
+  className="waves-effect waves-light btn grey lighten-3 grey-text">Search</button>
+
+    <a href="http://en.wikipedia.org/wiki/Special:Random"
+      className="waves-effect waves-light btn grey lighten-3 grey-text"
+      id='radomBtn'
+      target="_blank"
+      rel="noopener noreferrer">I'm Feeling Lucky </a>
+
+
+
 
     </div>
 

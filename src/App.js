@@ -52,15 +52,7 @@ class App extends Component {
 
     return (
       <div className="App">
-         <h1> woogle search </h1>
-         <h2> woogle random search </h2>
-         <div>
-           <a href="http://en.wikipedia.org/wiki/Special:Random"
-             className="waves-effect waves-light btn grey lighten-3 grey-text"
-             id='radomBtn'
-             target="_blank"
-             rel="noopener noreferrer">I'm Feeling Lucky </a>
-         </div>
+         <h1> woogle search </h1>      
          <Search  onSearch={this.handleSearch}/>
          <Result results={this.state.results}/>
      </div>

@@ -19,21 +19,28 @@ export default class Result extends Component {
 
       let heading = results && results.headings
       ? results.headings.map((head,key) =>
-        <div className={this.state.showIndex == key ? "expand" :"normalbar"} key={key} onClick={this.showDesription.bind(this, key)}>
-          <p>{head}</p>
+        <div key={key} onClick={this.showDesription.bind(this, key)}>
+          <a href='#'><p className="accordion">{head}</p></a>
           <div>
           <p>
-          {this.state.showIndex == key ? <a href={url[key]}
-                        className=" grey"
+          {this.state.showIndex == key ?
+            <div>
+              <p>  {description[key]} </p>
+            <a href={url[key]}
+                        className="btn-floating btn-tiny waves-effect waves-light grey"
                         target="_blank"
-                        rel="noopener noreferrer">{description[key]}
-                      </a> :''}
+                        rel="noopener noreferrer">
+                        <i className="material-icons">{url[key]}</i>
+                      </a>
+
+    </div>
+                      :''}
 
           </p>
           </div>
         </div>
       )
-      :<div>Data not found for {results.query}</div>;
+      :<div><h1>Data not found for {results.query}</h1></div>;
 
       console.log("shalu head", heading);
 
