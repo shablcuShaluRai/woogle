@@ -1,14 +1,31 @@
 import React,{ Component } from 'react';
-import SingleResult from './SingleResult';
+import SingleResult from './SingleResult'
 
 export default class Result extends Component {
-    render() {
-        var results = this.props.results && this.props.results[0] ? this.props.results[1].map((result, index) => {
-            return (
-                <SingleResult key={index} title={this.props.results[1][index]} description={this.props.results[2][index]} url={this.props.results[3][index]}/>
-            );
-        }) :"";
+    render(){
+      var results = this.props.results ? this.props.results:''
+      console.log("shalu result", results);
 
-        return (<div className="result-list">{results}</div>);
-    }
+      var heading = results.headings? results.headings.map((head) =><li>{head}</li>):""
+      console.log("shalu head", heading);
+
+      var description = results.discriptions? results.discriptions.map((desc) => <li>{desc}</li>):''
+      console.log("shalu desc", description);
+
+      var url = results.urls? results.urls.map((url) => <li>{url}</li>) : ''
+
+      console.log("urls", url);
+
+
+        return (
+<div>
+<ul>
+<p>{heading}</p>
+<p>{description}</p>
+<p>{url}</p>
+</ul>
+
+    </div>
+  )
+}
 }

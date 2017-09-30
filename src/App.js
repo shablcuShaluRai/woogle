@@ -6,7 +6,7 @@ import './App.css';
 
 class App extends Component {
   state = {
-       results: {}
+       results: []
    }
 
    handleSearch(query) {
@@ -20,14 +20,22 @@ class App extends Component {
         let  discriptions = arr[2];
         let  urls = arr[3];
         this.setState({results:{headings,discriptions,urls}})
-        console.log('anp state', this.state);
+
+
+
       }
     })
   }
 
   handleSearch = this.handleSearch.bind(this);
 
+
+
   render() {
+    let results = this.state.results ? this.state.results : ''
+    console.log("heading",results);
+
+
     return (
       <div className="App">
       <h1> woogle search </h1>
@@ -35,8 +43,8 @@ class App extends Component {
 
          <div>
 
-<Search  onSearch={this.handleSearch}/>
-<Result results={this.state.results}/>
+     <Search  onSearch={this.handleSearch}/>
+     <Result results={this.state.results}/>
 
            <a href="http://en.wikipedia.org/wiki/Special:Random"
            className="waves-effect waves-light btn grey lighten-3 grey-text"

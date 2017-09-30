@@ -18,8 +18,7 @@ export default class Search extends Component{
 
    handleSubmit(event) {
     //  alert('you have submitted: ' + this.state.query);
-        let query = this.state.query.trim();
-
+    let query = this.state.query.trim();
       if (!query) {
           return;
       }
