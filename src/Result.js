@@ -1,31 +1,36 @@
 import React,{ Component } from 'react';
-import SingleResult from './SingleResult'
+
 
 export default class Result extends Component {
     render(){
-      var results = this.props.results ? this.props.results:''
+      let results = this.props.results ? this.props.results:'';
+      let description = results && results.discriptions? results.discriptions:'';
+      let url = results && results.urls ? results.urls : ''
       console.log("shalu result", results);
 
-      var heading = results.headings? results.headings.map((head) =><li>{head}</li>):""
+      let heading = results && results.headings
+      ? results.headings.map((head,key) =>
+        <div>
+          <p>{head}</p>
+          <div>
+          <p>
+            <a href={url[key]}
+              className=" grey"
+              target="_blank"
+              rel="noopener noreferrer">{description[key]}
+            </a>
+          </p>
+          </div>
+        </div>
+      )
+      :"";
+
       console.log("shalu head", heading);
 
-      var description = results.discriptions? results.discriptions.map((desc) => <li>{desc}</li>):''
-      console.log("shalu desc", description);
-
-      var url = results.urls? results.urls.map((url) => <li>{url}</li>) : ''
-
-      console.log("urls", url);
-
-
-        return (
-<div>
-  <a href={url} className="single-result" target="_blank">{url}</a>
-
-<p>{heading}</p>
-<p>{description}</p>
-
-
-    </div>
-  )
-}
+      return (
+       <div className="searchResults">
+        {heading}
+       </div>
+      )
+    }
 }
