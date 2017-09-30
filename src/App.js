@@ -4,7 +4,7 @@ import Result from './Result';
 import Search from './Search'
 import './App.css';
 
-class App extends Component {
+export default class App extends Component {
   state = {
        results: {
          headings:[],
@@ -39,26 +39,19 @@ class App extends Component {
         this.setState({results:{query}})
       }
     })
+    .catch(e=>console.log('App.js handleSearch', e))
   }
 
   handleSearch = this.handleSearch.bind(this);
 
-
-
   render() {
-    let results = this.state.results ? this.state.results : ''
-    console.log("heading",results);
-
-
-    return (
-      <div className="App">
-         <h1> woogle search </h1>      
-         <Search  onSearch={this.handleSearch}/>
-         <Result results={this.state.results}/>
-     </div>
-
-    );
-  }
-}
-
-export default App;
+        let results = this.state.results ? this.state.results : {};
+        return (
+               <div className="App">
+                 <h1> woogle search </h1>
+                 <Search  onSearch={this.handleSearch}/>
+                 <Result results={results}/>
+               </div>
+             );
+         }
+ }

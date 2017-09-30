@@ -35,9 +35,9 @@ div.panel {
   border: 2;
 
 }
+
 .remove {
-    margin: 0 auto;
-padding: 38px 25px 25px 60px;
+  padding: 38px 25px 25px 60px;
     font-size: 8pt;
     position:relative;
     width: 58px;
@@ -47,8 +47,6 @@ padding: 38px 25px 25px 60px;
    background-size: 100% 100%;
   color: black;
  cursor: pointer;
- align: center;
-
 }
 
 .grey.lighten-3 {

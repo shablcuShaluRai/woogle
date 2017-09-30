@@ -16,4 +16,5 @@ data = data.trim()
 return fetch(`${api}${data}${parameter}`,{headers})
   .then((helper) => helper.text())
   .then(data => data)
+  .catch(e => console.log('api.js fetchData', e))
 }
